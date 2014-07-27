@@ -14,7 +14,7 @@ var configDB = require('./config/database.js');
 
 mongoose.connect(configDB.url);
 
-// require('./config/passport')(passport); // pass passport for configuration
+require('./config/passport')(passport); // pass passport for configuration
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -34,7 +34,7 @@ app.use(passport.session());
 app.use(flash());
 
 //routes returns function
-var routes = require('./routes/index')();
+var routes = require('./routes/index')(passport);
 app.use('/', routes);
 
 module.exports = app;
